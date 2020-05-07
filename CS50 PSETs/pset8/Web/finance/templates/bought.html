@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Bought stocks
+{% endblock %}
+
+{% block main %}
+    <table class="table" action="/buy" method="get">
+      <thead>
+        <tr>
+
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Shares</th>
+          <th scope="col">Total cost</th>
+          <th scope="col">Balance</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{symbol_stock}}</th>
+          <td>{{name_stock}}</td>
+          <td>{{price_stock}}</td>
+          <td>{{share_stock}}</td>
+          <td>{{total_share_stock}}</td>
+          <td>{{balance}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <a href = "/buy">Continue buying</a>
+{% endblock %}

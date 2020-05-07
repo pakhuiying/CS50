@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy stocks
+{% endblock %}
+
+{% block main %}
+
+    <script>
+
+        function enable_drop() {
+            //document.getElementById("textbox").disabled = true; //disable textbox
+            document.getElementById("textbox").value = ""; //clear textbox when textbox is disabled
+            //document.getElementById("dropdown").disabled = false; //enable dropdown
+        }
+
+        function enable_text() {
+            //document.getElementById("textbox").disabled = false; //enable textbox
+            //document.getElementById("dropdown").disabled = true; //disable dropdown
+            document.getElementById('dropdown').selectedIndex = -1; //clear dropdown when dropdown is disabled
+        }
+
+    </script>
+
+
+    <form action="/buy" method="post">
+
+        <div class="form-group">
+
+            <label for="exampleFormControlSelect1">Select from current stocks owned</label>
+
+            <select id = "dropdown" onclick="enable_drop()" name = "symbol" class="form-control" id="exampleFormControlSelect1">
+              <option disabled selected value> -- select an option -- </option>
+              {% for item in symbol_net_share %}
+              <option>{{item.symbol}}</option>
+              {% endfor %}
+
+            </select>
+
+         </div>
+
+        <div class="form-group">
+            <input id = "textbox" onclick="enable_text()" autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Or buy new stock" type="text">
+        </div>
+
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="No. of shares" type="text">
+        </div>
+
+        <button class="btn btn-primary" onclick="return confirm('Do you confirm your purchase?')" type="submit">Buy</button>
+    </form>
+
+
+{% endblock %}

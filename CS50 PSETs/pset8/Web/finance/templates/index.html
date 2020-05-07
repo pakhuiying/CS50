@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class="table" action="/buy" method="get">
+      <thead>
+        <tr>
+
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col">Shares</th>
+          <th scope="col">Current share</th>
+          <th scope="col">Current total share</th>
+
+
+        </tr>
+      </thead>
+      {% for item in shares %}
+      <tbody>
+        <tr>
+          <th scope="row">{{item.symbol}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.shares}}</td>
+          <td>{{item.current_share}}</td>
+          <td>{{item.total_current_share}}</td>
+
+        </tr>
+      </tbody>
+      {% endfor %}
+
+    </table>
+    <br>
+    <strong>Cash Balance: </strong>{{balance}} <br>
+    <strong>Total assets: </strong>{{total_assets}} <br>
+{% endblock %}
